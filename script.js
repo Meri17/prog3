@@ -153,4 +153,6 @@ function draw() {
     for (let i in predatorArr) {
         predatorArr[i].eat()
     }
+    
+
 }

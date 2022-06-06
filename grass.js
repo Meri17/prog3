@@ -1,6 +1,4 @@
 class Grass extends LivingCreature {
-   
-
     mul() {
         this.multiply++;
         var emptyCells = this.chooseCell(0);

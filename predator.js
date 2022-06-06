@@ -15,7 +15,10 @@ class Predator extends LivingCreature{
             [this.x + 1, this.y + 1]
         ];
     }
-
+chooseCell(ch){
+        this.getNewCoordinates();
+        return super.chooseCell(ch);
+    }
 
 mul() {
     var emptyCells = this.chooseCell(0);
@@ -89,7 +92,8 @@ eat() {
         this.energy+=20
         var newX = newCell1[0];
         var newY = newCell1[1];
-         matrix[newY][newX] = 0 ///kam 2 tiv@
+         matrix[newY][newX] = matrix[this.y][this.x]
+         matrix[this.y][this.x] = 0 ///kam 2 tiv@
         
         this.x = newX
         this.y = newY

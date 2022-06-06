@@ -16,7 +16,10 @@ class GrassEater extends LivingCreature {
             [this.x + 1, this.y + 1]
         ];
     }
-    
+    chooseCell(ch){
+        this.getNewCoordinates();
+        return super.chooseCell(ch);
+    }
 
     mul() {
         var emptyCells = this.chooseCell(0);

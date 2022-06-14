@@ -1,4 +1,6 @@
-class Energy extends LivingCreature{
+const LivingCreature = require("./LivingCreature");
+
+module.exports = class Energy extends LivingCreature{
     constructor(x, y) {
         super(x,y);
         this.energy = 17
@@ -24,7 +26,7 @@ class Energy extends LivingCreature{
 
 mul() {
     var emptyCells = this.chooseCell(0);
-    var newCell = random(emptyCells);
+    let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
     if (newCell) {
         var newX = newCell[0];

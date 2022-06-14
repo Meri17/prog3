@@ -1,114 +1,14 @@
-function generate(matLen, gr, grEat, pr, en, hall,mh) {
-    let matrix = []
-    for (let i = 0; i < matLen; i++) {
-        matrix[i] = []
-        for (let j = 0; j < matLen; j++) {
-            matrix[i][j] = 0
-        }
-    }
+var socket = io();
 
-    for (let i = 0; i < gr; i++) {
-        let x = Math.floor(Math.random() * matLen)
-        let y = Math.floor(Math.random() * matLen)
-        if (matrix[y][x] == 0) {
-            matrix[y][x] = 1
-        }
-    }
-    for (let i = 0; i < grEat; i++) {
-        let x = Math.floor(Math.random() * matLen)
-        let y = Math.floor(Math.random() * matLen)
-        console.log(x, y);
-        if (matrix[y][x] == 0) {
-            matrix[y][x] = 2
-        }
-    }
-    for (let i = 0; i < pr; i++) {
-        let x = Math.floor(Math.random() * matLen)
-        let y = Math.floor(Math.random() * matLen)
-        console.log(x, y);
-        if (matrix[y][x] == 0) {
-            matrix[y][x] = 3
-        }
-    }
-    for (let i = 0; i < en; i++) {
-        let x = Math.floor(Math.random() * matLen)
-        let y = Math.floor(Math.random() * matLen)
-        console.log(x, y);
-        if (matrix[y][x] == 0) {
-            matrix[y][x] = 4
-        }
-    }
-    for (let i = 0; i < hall; i++) {
-        let x = Math.floor(Math.random() * matLen)
-        let y = Math.floor(Math.random() * matLen)
-        if (matrix[y][x] == 0) {
-            matrix[y][x] = 5
-        }
-    }
-    for (let i = 0; i < mh; i++) {
-        let x = Math.floor(Math.random() * matLen)
-        let y = Math.floor(Math.random() * matLen)
-        if (matrix[y][x] == 0) {
-            matrix[y][x] = 6
-        }
-    }
-   
-   
-
-    return matrix
-}
-
-
-let matrix = generate(25, 45, 30, 10, 6, 3, 4)
-
-
-var side = 15;
-let grassArr = []
-let grassEaterArr = []
-let predatorArr = []
-let energyArr = []
-let hallArr = []
-let magicHallArr = []
-
-
-
+var side = 30;
 function setup() {
     frameRate(4);
-    createCanvas(matrix[0].length * side, matrix.length * side);
+    createCanvas(20 * side,20 * side);
     background('#acacac');
 
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-
-            if (matrix[y][x] == 1) {
-                let gr = new Grass(x, y)
-                grassArr.push(gr)
-            } else if (matrix[y][x] == 2) {
-                let gr = new GrassEater(x, y)
-                grassEaterArr.push(gr)
-            } else if (matrix[y][x] == 3) {
-                let gr = new Predator(x, y)
-                predatorArr.push(gr)
-            }
-            else if (matrix[y][x] == 4) {
-                let gr = new Energy(x, y)
-                energyArr.push(gr)
-            }
-            else if (matrix[y][x] == 5) {
-                let gr = new Hall(x, y)
-                hallArr.push(gr)
-            }
-            else if (matrix[y][x] == 6) {
-                let gr = new MagicHall(x, y)
-                magicHallArr.push(gr)
-            }
-           
-        }
-    }
-
+    
 }
-
-function draw() {
+function paint(matrix) {
 
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -142,17 +42,24 @@ function draw() {
         }
     }
 
-    for (var i in grassArr) {
-        grassArr[i].mul()
-        grassArr[i].eat()
-    }
-
-    for (let i in grassEaterArr) {
-        grassEaterArr[i].eat()
-    }
-    for (let i in predatorArr) {
-        predatorArr[i].eat()
-    }
-    
+  
 
 }
+setInterval(
+    function () {
+    socket.on('send matrix', paint)
+    },1000
+)
+
+
+
+
+
+
+
+
+
+
+
+
+

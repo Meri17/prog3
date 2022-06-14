@@ -1,4 +1,7 @@
-class Predator extends LivingCreature{
+const LivingCreature = require("./LivingCreature");
+
+
+module.exports = class Predator extends LivingCreature{
     constructor(x, y) {
         super(x,y);
         this.energy = 17
@@ -22,9 +25,9 @@ chooseCell(ch){
 
 mul() {
     var emptyCells = this.chooseCell(0);
-    var newCell = random(emptyCells);
+    let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
     var emptyCells1 = this.chooseCell(4);
-    var newCell1 = random(emptyCells1);
+    let newCell1 = emptyCells1[Math.floor(Math.random() * emptyCells1.length)]
 
   
      if (newCell) {
@@ -49,7 +52,7 @@ mul() {
 move() {
     this.energy--
     var emptyCells = this.chooseCell(0);
-    var newCell = random(emptyCells);
+    let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
     if(newCell && this.energy >= 0) {
         var newX = newCell[0];
         var newY = newCell[1];
@@ -63,11 +66,11 @@ move() {
 }
 eat() {
     var emptyCells = this.chooseCell(2);
-    var newCell = random(emptyCells);
+    let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
     var emptyCells1 = this.chooseCell(4);
-    var newCell1 = random(emptyCells1);
+    let newCell1 = emptyCells1[Math.floor(Math.random() * emptyCells1.length)]
     var emptyCells2 = this.chooseCell(5);
-    var newCell2 = random(emptyCells2);
+    let newCell2 = emptyCells2[Math.floor(Math.random() * emptyCells2.length)]
     if (newCell2){
         this.die()
     }

@@ -10,14 +10,15 @@
 </head>
 
 <body>
-    <script src="socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+    <script src="socket.io/socket.io.js"></script>
     <script src="script.js"></script>
+
     <body>
 
         <main>
             <section>
-                <h1>ԿՅԱՆՔԻ ԽԱՂ</h1>
+                <h1 class="header">ԿՅԱՆՔԻ ԽԱՂ</h1>
                 <p class="description">Այս խաղը կոչվում է կյանքի խաղ, քանի որ այստեղ բոլորը պայքարում են իրենց կյանքի
                     համար:
                     <br> Ներքևում կծանոթանաս կերպարների հետ:)
@@ -25,37 +26,51 @@
             </section>
             <section class="kerparner">
                 <div><img src="xot.png" alt="">
-                    <h6>fff</h6>
-                    <p>fff</p>
+                    <div>
+                        <h3>Խոտ</h3>
+                        <p>Բազմանում է մոտակա 8 վանդակներում:
+                        </p>
+                    </div>
                 </div>
                 <div><img src="xotaker.png" alt="">
-                    <h6>fff</h6>
-                    <p>fff</p>
+                    <div>
+                        <h3>Խոտակեր</h3>
+                        <p>Ապրում է <b>խոտ</b>  ուտելով, բազմանում 5 անգամ անընդմեջ <b>խոտ</b>  ուտելով և մեռնում 5 անգամ անընդմեջ չուտելուց:
+                        </p>
+                    </div>
                 </div>
                 <div><img src="predator.png" alt="">
-                    <h6>fff</h6>
-                    <p>fff</p>
+                    <div>
+                        <h3>Գիշատիչ</h3>
+                        <p>Ապրում է <b>խոտակեր</b>  ուտելով, բազմանում 5 անգամ անընդմեջ <b>խոտակեր</b>  ուտելով և մեռնում 5 անգամ անընդմեջ չուտելուց:</p>
+                    </div>
                 </div>
                 <div><img src="energy.png" alt="">
-                    <h6>fff</h6>
-                    <p>fff</p>
+                    <div>
+                        <h3>Էներգիայի աղբյուր</h3>
+                        <p>Սա մեկանգամյա Էներգիայի աղբյուր է <b>գիշատչի</b>  համար:Գիշատիչը ընկնելով դրա մեջ ավելացնում է իր էներգիան և <b> կրկնապատկվում</b>: </p>
+                    </div>
                 </div>
                 <div><img src="hall.png" alt="">
-                    <h6>fff</h6>
-                    <p>fff</p>
+                    <div>
+                        <h3>Սև խոռոչ</h3>
+                        <p><b>Ոչնչացնում </b> է իր շրջապատում գտնվող 8 վանդակները: </p>
+                    </div>
                 </div>
                 <div><img src="magichall.png" alt="">
-                    <h6>fff</h6>
-                    <p>fff</p>
+                    <div>
+                        <h3>Կախարդական փոս</h3>
+                        <p><b>Խոտակերը</b>  ընկնելով Կախարդական փոսի մեջ <b>վերափոխվում է գիշատչի</b> : </p>
+                    </div>
                 </div>
-            <button>start</button>
-               <button>xotaker</button>
-               <button>predator</button>
-               <button>die</button>
-               <button>stop</button>
+                <button>start</button>
+                <button onclick="grassEater()">xotaker</button>
+                <button>predator</button>
+                <button onclick="kill()">Die</button>
+                <button>stop</button>
             </section>
         </main>
-    
-</body>
+
+    </body>
 
 </html>

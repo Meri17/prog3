@@ -50,10 +50,12 @@ setInterval(
     socket.on('send matrix', paint)
     },1000
 )
-
-
-
-
+function kill() {
+    socket.emit("kill")
+}
+function grassEater() {
+    socket.emit("xotaker")
+}
 
 
 

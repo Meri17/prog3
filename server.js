@@ -72,7 +72,7 @@ return matrix
 
     
 }
-matrix =  generate(25, 45, 30, 10, 6, 3, 4)
+matrix =  generate(25, 10, 5, 10, 6, 3, 4)
 io.sockets.emit('send matrix', matrix)
 
  grassArr = []
@@ -139,3 +139,29 @@ setInterval(game, 900)
 io.on('connection', function (socket) {
     createObject(matrix)
 })
+function kill() {
+    grassArr = [];
+    grassEaterArr = [];
+    predatorArr = [];
+    energyArr = [];
+    hallArr = [];
+    magicHallArr = []
+    for (var y = 0; y <  matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            matrix[y][x] = 0;
+        }
+    }
+}
+io.on('connection', function (socket) {
+    createObject(matrix);
+    socket.on("kill", kill);
+});
+
+function grassEater() {
+    var newGrassEater = new GrassEater;
+    
+}
+io.on('connection', function (socket) {
+    createObject(matrix);
+    socket.on("xotaker", grassEater);
+});

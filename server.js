@@ -5,6 +5,7 @@ var io = require('socket.io')(server);
 var fs = require("fs");
 
 
+
 app.use(express.static("."));
 
 app.get('/', function (req, res) {
@@ -32,7 +33,7 @@ function generate(matLen, gr, grEat, pr, en, hall, mh) {
     for (let i = 0; i < grEat; i++) {
         let x = Math.floor(Math.random() * matLen)
         let y = Math.floor(Math.random() * matLen)
-        console.log(x, y);
+       
         if (matrix[y][x] == 0) {
             matrix[y][x] = 2
         }
@@ -40,7 +41,6 @@ function generate(matLen, gr, grEat, pr, en, hall, mh) {
     for (let i = 0; i < pr; i++) {
         let x = Math.floor(Math.random() * matLen)
         let y = Math.floor(Math.random() * matLen)
-        console.log(x, y);
         if (matrix[y][x] == 0) {
             matrix[y][x] = 3
         }
@@ -48,7 +48,6 @@ function generate(matLen, gr, grEat, pr, en, hall, mh) {
     for (let i = 0; i < en; i++) {
         let x = Math.floor(Math.random() * matLen)
         let y = Math.floor(Math.random() * matLen)
-        console.log(x, y);
         if (matrix[y][x] == 0) {
             matrix[y][x] = 4
         }
@@ -72,6 +71,23 @@ return matrix
 
     
 }
+weath = "winter"
+function weather() {
+    if (weath == "winter") {
+        weath = "spring"
+    }
+    else if (weath == "spring") {
+        weath = "summer"
+    }
+    else if (weath == "summer") {
+        weath = "autumn"
+    }
+    else if (weath == "autumn") {
+        weath = "winter"
+    }
+    io.sockets.emit('weather', weath)
+}
+setInterval(weather, 5000);
 matrix =  generate(25, 10, 5, 10, 6, 3, 4)
 io.sockets.emit('send matrix', matrix)
 
@@ -152,16 +168,60 @@ function kill() {
         }
     }
 }
+
+
+function grassEater() {
+    let x = Math.floor(Math.random() * 25)
+        let y = Math.floor(Math.random() * 25)
+        if (matrix[y][x] == 0) {
+            matrix[y][x] = 2
+            grassEaterArr.push( new GrassEater(x,y));
+        }
+    
+    
+}
+
+    
+function magicHall() {
+    let x = Math.floor(Math.random() * 25)
+        let y = Math.floor(Math.random() * 25)   
+        if (matrix[y][x] == 0) {
+            matrix[y][x] = 6
+            magicHallArr.push( new MagicHall(x,y));
+        }
+    
+    
+}
+
+function predator() {
+    let x = Math.floor(Math.random() * 25)
+        let y = Math.floor(Math.random() * 25)   
+        if (matrix[y][x] == 0) {
+            matrix[y][x] = 3
+            predatorArr.push( new Predator(x,y));
+        }
+    
+    
+}
+
+function grass() {
+    let x = Math.floor(Math.random() * 25)
+        let y = Math.floor(Math.random() * 25)   
+        if (matrix[y][x] == 0) {
+            matrix[y][x] = 1
+            grassArr.push( new Grass(x,y));
+        }
+    
+    
+}
+
+
 io.on('connection', function (socket) {
     createObject(matrix);
     socket.on("kill", kill);
-});
-
-function grassEater() {
-    var newGrassEater = new GrassEater;
-    
-}
-io.on('connection', function (socket) {
-    createObject(matrix);
     socket.on("xotaker", grassEater);
+    socket.on("xot", grass);
+    socket.on("predator", predator);
+    socket.on("magichall", magicHall);
+
 });

@@ -7,7 +7,7 @@
 body {
     background-color: #066163;
     display: flex;
-    overflow: hidden;
+   
 }
 
 
@@ -40,7 +40,7 @@ main {
 
 .header {
     font-family: "Gill Sans", sans-serif;
-    font-weight: 100;
+    font-weight: 400;
     margin: 2% 0 0 60%;
     font-size: 60px;
     color: white;

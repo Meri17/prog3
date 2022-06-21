@@ -8,8 +8,10 @@ function setup() {
 
     
 }
+
 function paint(matrix) {
 
+    
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -55,6 +57,15 @@ function kill() {
 }
 function grassEater() {
     socket.emit("xotaker")
+}
+function magicHall() {
+    socket.emit("magichall")
+}
+function predator() {
+    socket.emit("predator")
+}
+function grass() {
+    socket.emit("xot")
 }
 
 

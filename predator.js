@@ -56,7 +56,7 @@ move() {
     if(newCell && this.energy >= 0) {
         var newX = newCell[0];
         var newY = newCell[1];
-        matrix[newY][newX] = matrix[this.y][this.x] ///kam 2 tiv@
+        matrix[newY][newX] = matrix[this.y][this.x] 
         matrix[this.y][this.x] = 0
         this.x = newX
         this.y = newY
@@ -80,7 +80,7 @@ eat() {
         this.energy++
         var newX = newCell[0];
         var newY = newCell[1];
-        matrix[newY][newX] = matrix[this.y][this.x] ///kam 2 tiv@
+        matrix[newY][newX] = matrix[this.y][this.x] 
         matrix[this.y][this.x] = 0
         this.x = newX
         this.y = newY
@@ -96,7 +96,7 @@ eat() {
         var newX = newCell1[0];
         var newY = newCell1[1];
          matrix[newY][newX] = matrix[this.y][this.x]
-         matrix[this.y][this.x] = 0 ///kam 2 tiv@
+         matrix[this.y][this.x] = 0 
         
         this.x = newX
         this.y = newY

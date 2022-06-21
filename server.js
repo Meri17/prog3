@@ -71,23 +71,8 @@ return matrix
 
     
 }
-weath = "winter"
-function weather() {
-    if (weath == "winter") {
-        weath = "spring"
-    }
-    else if (weath == "spring") {
-        weath = "summer"
-    }
-    else if (weath == "summer") {
-        weath = "autumn"
-    }
-    else if (weath == "autumn") {
-        weath = "winter"
-    }
-    io.sockets.emit('weather', weath)
-}
-setInterval(weather, 5000);
+
+
 matrix =  generate(25, 10, 5, 10, 6, 3, 4)
 io.sockets.emit('send matrix', matrix)
 
@@ -97,6 +82,7 @@ io.sockets.emit('send matrix', matrix)
  energyArr = []
  hallArr = []
  magicHallArr = []
+ weath = "winter"
 Grass = require("./grass")
 GrassEater = require("./grassEater")
 Predator = require("./predator")
@@ -136,10 +122,28 @@ function createObject(matrix) {
     io.sockets.emit('send matrix', matrix)
 }
 
+function weather() {
+    if (weath == "winter") {
+        weath = "spring"
+    }
+    else if (weath == "spring") {
+        weath = "summer"
+    }
+    else if (weath == "summer") {
+        weath = "autumn"
+    }
+    else if (weath == "autumn") {
+        weath = "winter"
+    }
+    io.sockets.emit('weather', weath)
+}
+setInterval(weather, 5000);
+
 function game() {
-    for (var i in grassArr) {
-        grassArr[i].mul()
+    for (let i in grassArr) {
         grassArr[i].eat()
+        grassArr[i].mul()
+        
     }
 
     for (let i in grassEaterArr) {
@@ -168,7 +172,16 @@ function kill() {
         }
     }
 }
-
+function magicHall() {
+    let x = Math.floor(Math.random() * 25)
+        let y = Math.floor(Math.random() * 25)   
+        if (matrix[y][x] == 0) {
+            matrix[y][x] = 6
+            magicHallArr.push( new MagicHall(x,y));
+        }
+    
+    
+}
 
 function grassEater() {
     let x = Math.floor(Math.random() * 25)
@@ -182,16 +195,7 @@ function grassEater() {
 }
 
     
-function magicHall() {
-    let x = Math.floor(Math.random() * 25)
-        let y = Math.floor(Math.random() * 25)   
-        if (matrix[y][x] == 0) {
-            matrix[y][x] = 6
-            magicHallArr.push( new MagicHall(x,y));
-        }
-    
-    
-}
+
 
 function predator() {
     let x = Math.floor(Math.random() * 25)

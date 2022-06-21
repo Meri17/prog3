@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body id="background">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
     <script src="socket.io/socket.io.js"></script>
     <script src="script.js"></script>
@@ -23,48 +23,49 @@
                     համար:
                     <br> Ներքևում կծանոթանաս կերպարների հետ:)
                 </p>
+                <h1 class="weather" id="weather">Գարուն</h1>
             </section>
             <section class="kerparner">
                 <div><img src="xot.png" alt="">
                     <div>
                         <h3>Խոտ</h3>
-                        <p>Բազմանում է մոտակա 8 վանդակներում:
+                        <p class="p">Բազմանում է մոտակա 8 վանդակներում:
                         </p>
                     </div>
                 </div>
                 <div><img src="xotaker.png" alt="">
                     <div>
                         <h3>Խոտակեր</h3>
-                        <p>Ապրում է <b>խոտ</b>  ուտելով, բազմանում 5 անգամ անընդմեջ <b>խոտ</b>  ուտելով և մեռնում 5 անգամ անընդմեջ չուտելուց:
+                        <p  class="p">Ապրում է <b>խոտ</b>  ուտելով, բազմանում 5 անգամ անընդմեջ <b>խոտ</b>  ուտելով և մեռնում 5 անգամ անընդմեջ չուտելուց:
                         </p>
                     </div>
                 </div>
                 <div><img src="predator.png" alt="">
                     <div>
                         <h3>Գիշատիչ</h3>
-                        <p>Ապրում է <b>խոտակեր</b>  ուտելով, բազմանում 5 անգամ անընդմեջ <b>խոտակեր</b>  ուտելով և մեռնում 5 անգամ անընդմեջ չուտելուց:</p>
+                        <p  class="p">Ապրում է <b>խոտակեր</b>  ուտելով, բազմանում 5 անգամ անընդմեջ <b>խոտակեր</b>  ուտելով և մեռնում 5 անգամ անընդմեջ չուտելուց:</p>
                     </div>
                 </div>
                 <div><img src="energy.png" alt="">
                     <div>
                         <h3>Էներգիայի աղբյուր</h3>
-                        <p>Սա մեկանգամյա Էներգիայի աղբյուր է <b>գիշատչի</b>  համար:Գիշատիչը ընկնելով դրա մեջ ավելացնում է իր էներգիան և <b> կրկնապատկվում</b>: </p>
+                        <p class="p">Սա մեկանգամյա Էներգիայի աղբյուր է <b>գիշատչի</b>  համար:Գիշատիչը ընկնելով դրա մեջ ավելացնում է իր էներգիան և <b> կրկնապատկվում</b>: </p>
                     </div>
                 </div>
                 <div><img src="hall.png" alt="">
                     <div>
                         <h3>Սև խոռոչ</h3>
-                        <p><b>Ոչնչացնում </b> է իր շրջապատում գտնվող 8 վանդակները: </p>
+                        <p class="p"><b>Ոչնչացնում </b> է իր շրջապատում գտնվող 8 վանդակները: </p>
                     </div>
                 </div>
                 <div><img src="magichall.png" alt="">
                     <div>
                         <h3>Կախարդական փոս</h3>
-                        <p><b>Խոտակերը</b>  ընկնելով Կախարդական փոսի մեջ <b>վերափոխվում է գիշատչի</b> : </p>
+                        <p class="p"><b>Խոտակերը</b>  ընկնելով Կախարդական փոսի մեջ <b>վերափոխվում է գիշատչի</b> : </p>
                     </div>
-                </div>
-                <button onclick="grassEater()">Խոտակեր</button>
+                </div> 
                 <button onclick="magicHall()">Կախ. փոս</button>
+                <button onclick="grassEater()">Խոտակեր</button>
                 <button onclick="predator()">Գիշատիչ</button>
                 <button onclick="grass()">Խոտ</button>
                 <button onclick="kill()">Մահ</button>

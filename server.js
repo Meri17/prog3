@@ -33,7 +33,7 @@ function generate(matLen, gr, grEat, pr, en, hall, mh) {
     for (let i = 0; i < grEat; i++) {
         let x = Math.floor(Math.random() * matLen)
         let y = Math.floor(Math.random() * matLen)
-       
+
         if (matrix[y][x] == 0) {
             matrix[y][x] = 2
         }
@@ -67,22 +67,22 @@ function generate(matLen, gr, grEat, pr, en, hall, mh) {
         }
     }
 
-return matrix
+    return matrix
 
-    
+
 }
 
 
-matrix =  generate(25, 10, 5, 10, 6, 3, 4)
+matrix = generate(25, 10, 5, 10, 6, 3, 4)
 io.sockets.emit('send matrix', matrix)
 
- grassArr = []
- grassEaterArr = []
- predatorArr = []
- energyArr = []
- hallArr = []
- magicHallArr = []
- weath = "winter"
+grassArr = []
+grassEaterArr = []
+predatorArr = []
+energyArr = []
+hallArr = []
+magicHallArr = []
+weath = "winter"
 Grass = require("./grass")
 GrassEater = require("./grassEater")
 Predator = require("./predator")
@@ -118,7 +118,7 @@ function createObject(matrix) {
 
         }
     }
-  
+
     io.sockets.emit('send matrix', matrix)
 }
 
@@ -142,13 +142,14 @@ setInterval(weather, 5000);
 function game() {
     for (let i in grassArr) {
         grassArr[i].eat()
-        grassArr[i].mul()
-        
+        if (grassArr[i] != 'undefined') {
+            grassArr[i].mul()
+        }
     }
 
     for (let i in grassEaterArr) {
         grassEaterArr[i].eat()
-        
+
     }
     for (let i in predatorArr) {
         predatorArr[i].eat()
@@ -166,7 +167,7 @@ function kill() {
     energyArr = [];
     hallArr = [];
     magicHallArr = []
-    for (var y = 0; y <  matrix.length; y++) {
+    for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             matrix[y][x] = 0;
         }
@@ -174,49 +175,49 @@ function kill() {
 }
 function magicHall() {
     let x = Math.floor(Math.random() * 25)
-        let y = Math.floor(Math.random() * 25)   
-        if (matrix[y][x] == 0) {
-            matrix[y][x] = 6
-            magicHallArr.push( new MagicHall(x,y));
-        }
-    
-    
+    let y = Math.floor(Math.random() * 25)
+    if (matrix[y][x] == 0) {
+        matrix[y][x] = 6
+        magicHallArr.push(new MagicHall(x, y));
+    }
+
+
 }
 
 function grassEater() {
     let x = Math.floor(Math.random() * 25)
-        let y = Math.floor(Math.random() * 25)
-        if (matrix[y][x] == 0) {
-            matrix[y][x] = 2
-            grassEaterArr.push( new GrassEater(x,y));
-        }
-    
-    
+    let y = Math.floor(Math.random() * 25)
+    if (matrix[y][x] == 0) {
+        matrix[y][x] = 2
+        grassEaterArr.push(new GrassEater(x, y));
+    }
+
+
 }
 
-    
+
 
 
 function predator() {
     let x = Math.floor(Math.random() * 25)
-        let y = Math.floor(Math.random() * 25)   
-        if (matrix[y][x] == 0) {
-            matrix[y][x] = 3
-            predatorArr.push( new Predator(x,y));
-        }
-    
-    
+    let y = Math.floor(Math.random() * 25)
+    if (matrix[y][x] == 0) {
+        matrix[y][x] = 3
+        predatorArr.push(new Predator(x, y));
+    }
+
+
 }
 
 function grass() {
     let x = Math.floor(Math.random() * 25)
-        let y = Math.floor(Math.random() * 25)   
-        if (matrix[y][x] == 0) {
-            matrix[y][x] = 1
-            grassArr.push( new Grass(x,y));
-        }
-    
-    
+    let y = Math.floor(Math.random() * 25)
+    if (matrix[y][x] == 0) {
+        matrix[y][x] = 1
+        grassArr.push(new Grass(x, y));
+    }
+
+
 }
 
 
